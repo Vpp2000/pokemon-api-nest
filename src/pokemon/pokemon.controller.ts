@@ -12,6 +12,7 @@ import {
 import { PokemonService } from './pokemon.service';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
+import { MongoIdValidatorPipe } from '../common/pipes/mongo-id-validator/mongo-id-validator.pipe';
 
 @Controller('pokemon')
 export class PokemonController {
@@ -44,7 +45,7 @@ export class PokemonController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.pokemonService.remove(+id);
+  remove(@Param('id', MongoIdValidatorPipe) id: string) {
+    return this.pokemonService.remove(id);
   }
 }
