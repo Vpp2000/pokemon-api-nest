@@ -69,8 +69,21 @@ export class PokemonService {
     return pokemonDb;
   }
 
-  update(id: number, updatePokemonDto: UpdatePokemonDto) {
-    return `This action updates a #${id} pokemon`;
+  async update(id: string, updatePokemonDto: UpdatePokemonDto) {
+    const pokemonDb: Pokemon = await this.pokemonModel.findById(id);
+
+    if (updatePokemonDto.name) {
+      updatePokemonDto.name = updatePokemonDto.name.toLowerCase();
+    }
+
+    try {
+      const updatedPokemonDb = await pokemonDb.updateOne(updatePokemonDto, {
+        new: true,
+      });
+      return { ...pokemonDb, ...updatedPokemonDb };
+    } catch (error) {
+      this.handleError(error);
+    }
   }
 
   remove(id: number) {
@@ -79,5 +92,16 @@ export class PokemonService {
 
   private isNumericString(str: string) {
     return !isNaN(+str);
+  }
+
+  private handleError(error) {
+    if (error.code === 11000) {
+      throw new BadRequestException(
+        `Pokemon already exists in DB ${JSON.stringify(error.keyValue)}`,
+      );
+    }
+    throw new InternalServerErrorException(
+      "Can't alter pokemon db -- Check server logs",
+    );
   }
 }
