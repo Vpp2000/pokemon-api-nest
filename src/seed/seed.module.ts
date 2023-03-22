@@ -8,13 +8,6 @@ import { Pokemon, PokemonSchema } from '../pokemon/entities/pokemon.entity';
 @Module({
   controllers: [SeedController],
   providers: [SeedService],
-  imports: [
-    MongooseModule.forFeature([
-      {
-        name: Pokemon.name,
-        schema: PokemonSchema,
-      },
-    ]),
-  ],
+  imports: [PokemonModule],
 })
 export class SeedModule {}
