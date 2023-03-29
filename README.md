@@ -11,3 +11,4 @@
 5. Stack usado:
    1. MongoDb
    2. NestJs
+6. Duplicar el archivo ___.env.template___ y renombrar a __.env__.
