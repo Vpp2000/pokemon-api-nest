@@ -6,7 +6,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Pokemon } from '../pokemon/entities/pokemon.entity';
 import { Model } from 'mongoose';
 
-const POKE_URL = 'https://pokeapi.co/api/v2/pokemon?limit=25';
+const POKE_URL = 'https://pokeapi.co/api/v2/pokemon?limit=12';
 
 @Injectable()
 export class SeedService {
