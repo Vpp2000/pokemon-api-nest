@@ -37,3 +37,6 @@ lerna-debug.log*
 
 # docker dir added
 /mongo
+
+# env file
+.env
