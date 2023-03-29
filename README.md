@@ -12,3 +12,4 @@
    1. MongoDb
    2. NestJs
 6. Duplicar el archivo ___.env.template___ y renombrar a __.env__.
+7. URL base de REST API: https://pokemon-api-nest-production.up.railway.app/api/v1/pokemon
